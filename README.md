@@ -3,7 +3,7 @@
 Temperature Check script using Raspberry Pi with AM2302
 
 
-![Design Blocks](https://raw.githubusercontent.com/froala/design-blocks/master/design-blocks.jpg)
+![Design Blocks](http://www.djinnsour.com/wp-content/uploads/2017/10/raspberrypi_3b_am2302.jpg)
 
 
 ## Project Description
