@@ -2,7 +2,7 @@
 #
 #Temperature check script using AM2302 on SLGRPI001
 #
-temperature=$(sudo ./AdafruitDHT.py 2302 4 | awk -F'[= ]' '{print int($2)}' | sed 's/*//g')
+temperature=$(sudo /home/yourusername/scripts/tempcheck/AdafruitDHT.py 2302 4 | awk -F'[= ]' '{print int($2)}' | sed 's/*//g')
 maxtemp=100
 H=$(date +%H)
 echo "Server room temperature is $temperature degrees"  > /home/yourusername/scripts/tempcheck/temp.txt
