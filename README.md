@@ -37,13 +37,56 @@ None of the links above have affiliate links, I just provided them for reference
 ## Installing Hardware
 
 ### Raspberry Pi
-1. Download the latest version of [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) 
-2. Download a copy of [Etcher](https://etcher.io/) and install it on your computer
-3. Start the Etcher application, select the Raspbian download, the SD card and click Flash
-4. When the Flash has completed eject the SD card and install it in the Raspberry Pi
+1. Download the latest version of [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) .
+2. Download a copy of [Etcher](https://etcher.io/) and install it on your computer.
+3. Start the Etcher application, select the Raspbian download, the SD card and click Flash.
+4. When the Flash has completed eject the SD card and install it in the Raspberry Pi.
 5. If you are using the came case as me you want to connect the fan to the power and ground. Connect the positive (+) red wire to pin 04, and the ground (-) to ping 06. See the Photos above for reference.
 6. Your AM2302 will have three wires or pins: positive (+), data, and ground (-). Connect the positive to the 3.3V pin 01. Connect the data to the pin 07. Connect the ground to ping 09. 
-...The data pin will be referred to as GPIO 04 even though it is pin 07.  See the photos above for reference.
+7. Finish assembling the case.
+8. Boot the Raspberry Pi and install the OS. You do not need to setup the GUI for this unless you want to do so.
+9. Create a user, set the password for the user, and give the user sudo access
+
+Note - The data pin will be referred to as **GPIO 04** even though it is pin 07.  See the photos above for reference.
+
+### Install the Adafruit Python DHT Sensor Library
+In the following steps replace *yourusername* with the username you created in step 9 above
+'''
+cd /home/yourusername
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential python-dev
+git clone https://github.com/adafruit/Adafruit_Python_DHT.git
+cd Adafruit_Python_DHT
+sudo python setup.py install
+'''
+
+Now, test the AM2302 to verify it is working correctly. If your data pin was connected to something other than pin 07 change the 4 below to the appropriate gpio pin.
+
+'''
+cd examples
+sudo ./AdafruitDHT.py 2302 4
+'''
+
+If everything is working correctly you should get a response similar to the following. If you do not get a similar response something is most likely wrong with your hardware connection, or the AM2302. 
+
+'Temp=21.1*  Humidity=29.3%'
+
+#### Changing the Sensor Library Output to Farnheit
+You can change the output to Farenheit by making a small change to the Python script. Use nano to edit the file AdafruitDHT.py and find the line *#temperature = temperature * 9/5.0 + 32*. Remove the # symbol at the beginning of the line, press ctrl-x and save the file.
+
+'''
+nano -w AdafruitDHT.py
+sudo ./AdafruitDHT.py 2302 4
+'''
+
+Your output should now show in Farenheit.
+'Temp=70.2*  Humidity=30.8%'
+
+### Install the Scripts
+In the steps below replace *yourusername* with your linux username, or pi
+1.  Create a directory named /home/yourusername/scripts
+2.  
 
 
 
