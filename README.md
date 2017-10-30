@@ -32,7 +32,7 @@ None of the links above have affiliate links, I just provided them for reference
 - [Adafruit Python DHT Sensor Library](https://github.com/adafruit/Adafruit_Python_DHT)
 - [Mailgun account](https://www.mailgun.com/)
 
-[! Raspberry Pi 3b GPIO Pinout](http://www.djinnsour.com/wp-content/uploads/2017/10/raspberrypi_3b_gpio_ping.png)
+![Design Blocks](http://www.djinnsour.com/wp-content/uploads/2017/10/raspberrypi_3b_gpio_ping.png)
 
 ## Installing Hardware
 
