@@ -1,4 +1,4 @@
-# [Djinnsour Tempcheck Scripts] (http://www.djinnsour.com/2017/10/30/raspberry-pi-3b-with-am2303-temperature-sensor/)
+# [Djinnsour Tempcheck Scripts](http://www.djinnsour.com/2017/10/30/raspberry-pi-3b-with-am2303-temperature-sensor/)
 
 Temperature Check script using Raspberry Pi with AM2302
 
