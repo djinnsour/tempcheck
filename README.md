@@ -50,7 +50,8 @@ None of the links above have affiliate links, I just provided them for reference
 Note - The data pin will be referred to as **GPIO 04** even though it is pin 07.  See the photos above for reference.
 
 ### Install the Adafruit Python DHT Sensor Library
-In the following steps replace *yourusername* with the username you created in step 9 above
+In the following steps replace *yourusername* with the username you created in step 9 above.
+
 ```
 cd /home/yourusername
 sudo apt update
@@ -81,15 +82,43 @@ sudo ./AdafruitDHT.py 2302 4
 ```
 
 Your output should now show in Farenheit.
+
 `Temp=70.2*  Humidity=30.8%`
 
 ### Install the Scripts
-In the steps below replace *yourusername* with your linux username, or pi
-1.  Create a directory named /home/yourusername/scripts
-2.  
+In the following steps replace *yourusername* with the username you created in step 9 above.
 
+```
+mkdir /home/yourusername/scripts
+cd /home/yourusername/scripts
+git clone git@github.com:djinnsour/tempcheck.git
+cd tempcheck
+```
+In the two bash scripts, tempcheck.sh and weekly.sh, you need to replace *yourusername* with your username. You also need to replace the API and mailgun link with the appropriate one from your Mailgun API key and  API Base URL. You can find these in your [Mailgun Profile](https://app.mailgun.com/app/domains). You will also need to replace the email address you intend to receive the alerts, of course.
 
+Note - API Key and API Base URL included in the script are fake.  If you do not change these your message will fail to send.  If you prefer not to use Mailgun you can replace the code with something like [SWAKS](http://www.jetmore.org/john/code/swaks/) and your own SMTP information.
 
+To replace *yourusername* in the bash scripts do the following.
 
+```
+sed -i 's/yourusername/actualusername/g' tempcheck.sh
+sed -i 's/yourusername/actualusername/g' weekly.sh
+```
 
+#### Changing the maximum temperature
+I have the maximum temperature set to 100 degrees Farenheit.  If you want that to be lower then edit the *maxtemp* variable in the script. Change 100 to whatever you prefer.
+
+### Schedule the scripts
+In the following steps replace *yourusername* with the username you created in step 9 above.
+
+You need to schedule these to run as cron jobs.  Replace the *yourusername* with the username you created and paste the following after entering `crontab -e`. 
+
+```
+#Temperature check script. Sends an alert when temperature is over 100 degrees F
+*/15 * * * * /home/yourusername/scripts/tempcheck/tempcheck.sh >/dev/null 2>&1
+#Weekly temperature report
+0 8 * * 1 /home/yourusername/scripts/tempcheck/weekly.sh >/dev/null 2>&1
+```
+
+Your scripts should now run automatically.  The temperature check will run every 15 minutes.  If the temperature reaches the *maxtemp* or greater an email alert will be sent to the email address you specified. A weekly email with the average temperature will be sent to the same address.
 
