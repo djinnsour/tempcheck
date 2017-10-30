@@ -10,7 +10,7 @@ echo "Daytime temperature average = $dayavg" > /home/yourusername/scripts/tempch
 echo "Nighttime temperature average = $nightavg" >> /home/yourusername/scripts/tempcheck/weekly.txt
 curl -s --user 'api:key-1234567890abcdefghijklmnop' \
     https://api.mailgun.net/v3/mailgunapibaseuser1234567890abcdefghijklmnop.mailgun.org/messages \
-        -F from='Mailgun Sandbox <postmaster@sandboxcc072361676d4f88aa8a84fe152c62bb.mailgun.org>' \
+        -F from='Mailgun Sandbox <postmaster@sandboxcc1234567890abcdefghijklmnop.mailgun.org>' \
         -F to='Some Person <someone@foobar.com>' \
         -F subject='Temperature Alert' \
         -F text='Weekly temperature average in the server room' \
